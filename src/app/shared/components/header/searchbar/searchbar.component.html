@@ -1,0 +1,35 @@
+<div class="flex">
+    <input type="search" aria-label="awd" [(ngModel)]="searchInput" class="searchInput"
+        (input)="onSearchInputChange(searchInput)" placeholder="Devspace durchsuchen">
+</div>
+@if (searchInput.length > 1) {
+<div class="searchResultsCard">
+    <div class="card-groesse">
+        @for (result of searchResults; track $index) {
+        <div class="searchResultItem">
+            @if (result.title === "User: ") {
+            <div class="flex align-items-center w-full" (click)="openInfo(result.description)">
+                <img class="profilePhoto mr-2" [src]="result.description.avatar" alt="">
+                <p>&#64;{{result.description.username}}</p>
+            </div>
+            }
+            @else if (result.title === "Channel: ") {
+            <div class="w-full flex align-items-center" (click)="openChannel(result.description)">
+                <p>#{{result.description.name}}</p>
+            </div>
+            }
+            @else if (result.title === "Message: ") {
+            <div class="w-full flex align-items-center gap-2">
+                <p>{{result.description.message }} </p>in<p>{{"#" + result.description.channelName}}</p>
+            </div>
+            }
+        </div>
+        }
+        @empty {
+        <div class="flex align-items-center searchResultItem">
+            <p>Keine Ergebnisse gefunden</p>
+        </div>
+        }
+    </div>
+</div>
+}

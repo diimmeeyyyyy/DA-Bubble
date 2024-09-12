@@ -1,0 +1,14 @@
+<section
+  *ngIf="this.chatService.allEmojis.length > 0"
+  [ngClass]="{ activeUserClass: user.id === message.senderId }"
+>
+  @for (emoji of this.chatService.allEmojis; track $index) {
+  <app-reaction
+    [messageType]="messageType"
+    [emoji]="emoji"
+    [activeUser]="user"
+    [message]="message"
+    *ngIf="isReactionForCurrentMessage(emoji)"
+  ></app-reaction>
+  }
+</section>

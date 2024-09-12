@@ -1,0 +1,64 @@
+<div class="w-full h-full relative container">
+    <div (click)="goToLogin()" class="arrow-back"></div>
+
+    <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" class="w-full">
+        <div class="w-full">
+            <div class="flex flex-column gap-6 text-center w-full pb-6 mobile-style-header">
+                <mat-card-title>Konto erstellen</mat-card-title>
+                <mat-card-subtitle>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
+                    DABubble-Konto</mat-card-subtitle>
+            </div>
+
+            <div class="flex flex-column gap-4">
+
+                <div class="flex flex-column gap-4">
+                    <div>
+                        <input type="text" [(ngModel)]="user.username" class="name" name="username"
+                            placeholder="Username" #username="ngModel" autocomplete="username" required>
+                        @if (!username.valid && !username.disabled && username.touched) {<div class="alert">
+                            <span>Your
+                                Name is
+                                required</span>
+                        </div>}
+                    </div>
+
+                    <div>
+                        <input type="email" [(ngModel)]="user.mail" class="mail" name="email"
+                            placeholder="Beispielname@email.com" #email="ngModel" autocomplete="email"
+                            pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,6}$" required>
+                        @if (!email.valid && !email.disabled && email.touched) {<div class="alert"> <span>
+                            Ungültige Email</span>
+                        </div>}
+                    </div>
+
+                    <div>
+                        <input
+                            matTooltip="• one number • one uppercase letter • one lowercase letter • Minimum of 8 characters"
+                            type="password" [(ngModel)]="user.password" class="password" name="password" autocomplete="current-password"
+                            placeholder="Passwort" #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                            required>
+                        @if (!password.valid && !password.disabled && password.touched) {<div class="alert">
+                            <span>
+                                Ungültiges Passwort</span>
+                        </div>}
+                    </div>
+
+                </div>
+                @if (this.authService.fehlerMeldung) {
+
+                    <div class="bigAlert">
+                        <span>{{this.authService.fehlerMeldung}}</span>
+                    </div>
+                }
+                <div>
+                    <mat-checkbox (change)="acceptPolicy = !acceptPolicy" class="example-margin">Ich stimme der <a class="link" routerLink="/user/privacy">Datenschutzerklärung</a>
+                        zu.</mat-checkbox>
+                </div>
+            </div>
+        </div>
+      
+        <button type="submit" [disabled]="!acceptPolicy || !username.valid || !email.valid || !password.valid"
+            title="login" mat-flat-button name="registrieren">Weiter</button>
+
+    </form>
+</div>

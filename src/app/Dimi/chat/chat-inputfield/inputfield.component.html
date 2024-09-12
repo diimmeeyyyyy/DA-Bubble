@@ -1,0 +1,72 @@
+<main class="inputfield">
+  <textarea #chatTextarea
+    (keydown)="handleEnterKey($event)"
+    [(ngModel)]="textareaValue"
+    [placeholder]="getPlaceholderText()"
+    [value]="textareaValue | emojiInput"
+    (input)="handleTextareaInput($event)"
+  ></textarea>
+    
+  <!-- Dieser Code funktioniert aber ist sehr sehr anstrengend zu verwalten bzw. es buggt rum und gefällt mir nicht! -->
+  <!-- <div
+      id="textarea"
+      class="textarea"
+      (keydown)="handleEnterKey($event)"
+      contenteditable="true"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()"
+    >
+      {{ textareaValue.toString() | emojis | safeHTML }}
+    </div> -->
+
+  <section class="arrange-input-options">
+    <div class="chat-options">
+      <app-add-files
+        (mouseenter)="changeAddFilesImg(true)"
+        (mouseleave)="changeAddFilesImg(false)"
+        [title]="fileName ? 'Bild rausnehmen' : ''"
+        [addFilesImg]="addFilesImg"
+        (selectedFile)="handleSelectedFile($event)"
+        [filePreview]="selectedFile"
+        (fileName)="handleFileName($event)"
+      ></app-add-files>
+
+      <div>
+        <img src="/img/line.svg" />
+      </div>
+
+      
+      <app-emojies
+        (mouseenter)="changeAddEmojiImg(true)"
+        (mouseleave)="changeAddEmojiImg(false)"
+        [addEmojiImg]="addEmojiImg"
+        (selectedEmoji)="handleSelectedEmoji($event)"
+      ></app-emojies>
+
+      <app-link-channel-member
+        (mouseenter)="changeAddLinkImg(true)"
+        (mouseleave)="changeAddLinkImg(false)"
+        [usersInChannel]="usersInChannel"
+        [addLinkImg]="addLinkImg"
+        [linkedUsers]="linkedUsers"
+        (users)="handleLinkedUsernames($event)"
+        [(linkWindowOpen)]="linkWindowOpen"
+      ></app-link-channel-member>
+
+      <app-link-channel
+      [linkedChannel]="linkedChannel"
+        [ChannelsFromUser]="ChannelsFromUser"
+        (users)="handleLinkedChannels($event)"
+        [(linkChannelWindowOpen)]="linkChannelWindowOpen"
+      ></app-link-channel>
+    </div>
+    <img
+      src="./img/send-message.svg"
+      class="send-message-btn"
+      (click)="sendMessage(messageType)"
+      [ngClass]="{'disabled': !textareaValue.trim() && !selectedFile}"
+    />
+  </section>
+</main>
+
+

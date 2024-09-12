@@ -1,0 +1,20 @@
+<main
+  class="actual-message"
+  *ngIf="!receiveMessage.deleted"
+  [ngClass]="{
+    'file-and-text': receiveMessage.fileUrl && receiveMessage.message,
+  }"
+>
+  <section
+    [ngClass]="{ 'mw-70': repeatedMessage }"
+    *ngIf="receiveMessage.message && receiveMessage.message.toString().trim() !== ''"
+  >
+    <div class="message" [innerHTML]="receiveMessage.message | emojis | verlinkung"></div>
+    <span *ngIf="receiveMessage.edited" class="edited">bearbeitet</span>
+  </section>
+  <div *ngIf="imageExists()" (click)="openImageInDialog()">
+    <img [src]="receivedImgMessage" />
+  </div>
+</main>
+
+

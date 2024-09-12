@@ -1,0 +1,46 @@
+.wrapper {
+  height: calc(100vh - 60px); //weil wegen 60px padding oben unten
+  padding: 30px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 100%;
+}
+
+.adjustments {
+  display: flex;
+  height: calc(100vh - 160px);
+  gap: 30px;
+}
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:host.small-screen-channel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (max-width: 1250px) {
+
+  main {
+    gap: 0;
+  }
+
+  .adjustments {
+    justify-content: center;
+    gap: 0;
+  }
+
+  .wrapper {
+    height: 100vh;
+    padding: 0;
+  }
+}

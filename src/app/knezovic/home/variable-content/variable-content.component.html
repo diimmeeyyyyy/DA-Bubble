@@ -1,0 +1,28 @@
+@if (getUrl() === "/user/imprint") {
+  <router-outlet></router-outlet>
+} @else if (getUrl() === "/user/privacy") {
+  <router-outlet></router-outlet>
+
+} @else {
+  <div class="h-screen w-full">
+    <div class="h100vh w-full flex align-items-center justify-content-center">
+      <div>
+        <div
+          class="flex flex-column w-full align-items-center justify-content-center"
+        >
+          <div
+            class="card flex flex-column align-items-center justify-content-center h-8"
+          >
+            <router-outlet></router-outlet>
+          </div>
+          @if (getUrl() !== "/user/imprint") {
+            <div class="flex gap-8 mobile-view">
+              <a (click)="routeToImprint()">Impressum</a>
+              <a (click)="routeToPrivacy()">Datenschutz</a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

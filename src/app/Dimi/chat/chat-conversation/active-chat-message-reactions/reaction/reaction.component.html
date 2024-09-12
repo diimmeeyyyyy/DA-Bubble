@@ -1,0 +1,8 @@
+<main (click)="handleClick()">
+  <section [ngClass]="{'send-message': messageType === 'send'}">
+    <img [src]="getEmojiImg(emoji)" />
+    <p [innerHTML]="emojiUsersText"></p>
+  </section>
+  <img [src]="getEmojiImg(emoji)" />
+  <p>{{ getEmojiReactionsAmount(emoji) }}</p>
+</main>

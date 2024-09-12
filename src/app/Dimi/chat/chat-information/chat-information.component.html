@@ -1,0 +1,60 @@
+@if (selectedChannel) {
+  <main>
+    <section class="channel-information">
+      <div
+        *ngIf="isChannel"
+        class="chat-details-channel"
+        (mouseenter)="changeTagImg(true)"
+        (mouseleave)="changeTagImg(false)"
+        (click)="
+          selectedChannel.isPrivate
+            ? openUserInfo()
+            : openDialogChannelInformation($event)
+        "
+        [ngClass]="{ 'dialog-is-open': dialogChannelInfoIsOpen }"
+      >
+        <img
+          [src]="tagImg"
+          class="tag-img"
+          *ngIf="!selectedChannel.isPrivate"
+        />
+
+        <span *ngIf="selectedChannel.isPrivate" class="private-chat-avatar">
+          <img [src]="privatChatAvatar" class="privat-chat-avatar" />
+        </span>
+
+        <h2 *ngIf="!selectedChannel.isPrivate">
+          {{ selectedChannel.name }}
+        </h2>
+        <h2 *ngIf="selectedChannel.isPrivate">
+          {{ privateChatPartnerName }}
+        </h2>
+        <img class="arrow-down" [src]="arrowImg" />
+      </div>
+
+      <div class="channel-members" *ngIf="!selectedChannel.isPrivate">
+        <div
+          class="channel-member-amount just-desktop-view"
+          (click)="openDialogChannelMembers($event)"
+          [ngClass]="{ 'dialog-is-open': dialogChannelMembersIsOpen }"
+        >
+          @for (user of assignedUsers.slice(0, 5); track $index) {
+            <img class="img" [src]="user.avatar" />
+          }
+          <p class="missing-amount" *ngIf="getExtraUserCount() > 0">
+            +{{ getExtraUserCount() }}
+          </p>
+          <p *ngIf="getExtraUserCount() < 6">
+            {{ selectedChannel.assignedUser.length }}
+          </p>
+        </div>
+        <img
+          [src]="addChannelMembersImg"
+          (mouseenter)="changeAddMembersImg(true)"
+          (mouseleave)="changeAddMembersImg(false)"
+          (click)="checkDialogToOpen($event)"
+        />
+      </div>
+    </section>
+  </main>
+}

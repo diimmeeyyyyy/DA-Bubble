@@ -1,0 +1,203 @@
+main {
+  padding-top: 16px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+p,
+h4,
+h5 {
+  margin: 0;
+}
+
+.message-day {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  >p {
+    background: rgba(173, 176, 217, 1);
+    height: 1px;
+    width: 90%;
+
+  }
+
+  >h4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(253, 251, 255);
+    border-radius: 30px;
+    padding: 5px 15px;
+    border: 1px solid rgba(173, 176, 217, 1);
+    font-size: clamp(0.75rem, 0.3971vw + 0.6838rem, 1.125rem);
+    text-align: center;
+  }
+}
+
+.message {
+  position: relative;
+  display: flex;
+  padding-inline: 50px;
+  padding-block: 10px;
+  gap: 20px;
+  transition: background-color 0.3s ease-in-out;
+
+  >img {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &:hover .slide-in {
+    animation: slideIn 0.1s forwards;
+    top: -12px;
+    right: 10%;
+  }
+
+  &:hover {
+    background-color: rgba(236, 238, 254, 1);
+
+    &>.message-information>app-actual-receive-message ::ng-deep .actual-message {
+      background-color: white;
+    }
+  }
+}
+
+.message-information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  >.sender-and-time {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    >h5 {
+      font-size: 18px;
+    }
+
+    >p {
+      font-size: 14px;
+      color: rgba(104, 104, 104, 1);
+      text-wrap: nowrap;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  position: absolute;
+  right: -100%;
+  top: -12px;
+}
+
+.message-deleted-notification {
+  color: rgba(83, 90, 241, 1);
+  font-size: 10px;
+}
+
+.adjust-padding-left {
+  padding-inline: clamp(5.5rem, 4.5164rem + 5.2459vw, 7.5rem) 50px !important;
+}
+
+.pt-none {
+  padding-top: unset;
+}
+
+.jc-end {
+  justify-content: flex-end;
+}
+
+.position-component {
+  top: 0px !important;
+}
+
+.style-thread-answers {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  div {
+    gap: 4px;
+  }
+}
+
+.purple {
+  color: #535af1;
+}
+
+.grey {
+  color: #686868;
+}
+
+@media (max-width: 1250px) {
+  .sender-and-time {
+    width: max-content;
+  }
+
+  .message {
+    padding: 10px clamp(1rem, -0.0451rem + 5.5738vw, 3.125rem);
+  }
+
+  .text-sm {
+    font-size: clamp(0.75rem, 0.652rem + 0.3922vw, 0.875rem) !important;
+    text-wrap: nowrap;
+  }
+
+  .text-lg {
+    font-size: clamp(1rem, 0.902rem + 0.3922vw, 1.125rem) !important;
+  }
+
+  .style-thread-answers {
+    gap: clamp(0.75rem, 0.3578rem + 1.5686vw, 1.25rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .message {
+    gap: 10px;
+
+    >img {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      object-fit: cover;
+    }
+  }
+
+  .adjust-padding-left {
+    margin-left: -20px;
+  }
+}
+
+@media (max-width: 340px) {
+  .sender-and-time {
+    flex-direction: column;
+    align-items: start !important;
+    gap: 2px !important;
+  }
+
+  .style-thread-answers {
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+  }
+}

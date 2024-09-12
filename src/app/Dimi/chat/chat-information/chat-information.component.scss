@@ -1,0 +1,162 @@
+main {
+  height: clamp(3.75rem, 4.1284vw + 1.6628rem, 6.25rem);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  padding-inline: 15px;
+  border-radius: 30px 30px 0px 0px;
+  position: relative;
+  z-index: 5;
+}
+
+p,
+h2 {
+  margin: 0;
+}
+
+.channel-information {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-details-channel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  > h2 {
+    font-size: clamp(20px, 3vw, 24px);
+    transition: color 0.3s ease;
+  }
+
+  > .arrow-div {
+    padding: 10px 7px;
+  }
+
+  &:hover {
+    /*  padding: 6px 10px; */
+    gap: 10px;
+    background: rgba(236, 238, 254, 1);
+
+    > h2 {
+      color: rgba(83, 90, 241, 1);
+    }
+  }
+}
+
+.channel-members {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > img {
+    cursor: pointer;
+  }
+
+  > .channel-member-amount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    cursor: pointer;
+    border-radius: 100px;
+
+    > img:not(:first-child) {
+      margin-left: -15px;
+    }
+
+    > img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(236, 238, 254, 1);
+
+      > p {
+        color: rgba(83, 90, 241, 1);
+      }
+    }
+  }
+}
+
+.missing-amount {
+  background-color: antiquewhite;
+  border-radius: 30px;
+  padding: 5px;
+  margin-left: -15px;
+}
+
+.custom-dialog-container {
+  border-radius: 0 !important;
+}
+
+.dialog-is-open {
+  background: rgba(236, 238, 254, 1);
+
+  > h2,
+  p {
+    color: rgba(83, 90, 241, 1);
+  }
+}
+
+.privat-chat-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  border: 2px solid white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+.green {
+  background-color: #92c83e;
+}
+
+.grey {
+  background-color: #686868;
+}
+
+.private-chat-avatar {
+  min-width: 50px;
+  height: 50px;
+  position: relative;
+  object-fit: cover;
+}
+
+.just-mobile-view {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .just-desktop-view {
+    display: none !important;
+  }
+
+  .just-mobile-view {
+    display: block;
+  }
+}

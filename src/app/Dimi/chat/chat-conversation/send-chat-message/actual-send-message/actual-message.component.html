@@ -1,0 +1,21 @@
+<main
+  class="actual-message"
+  *ngIf="!sendMessage.deleted"
+  [ngClass]="{
+    'file-and-text': sendMessage.fileUrl && sendMessage.message,
+  }"
+>
+  <div *ngIf="messageExists()">
+    <div class="message" [innerHTML]="sendMessage.message | emojis | verlinkung"></div>
+      <span *ngIf="sendMessage.edited" class="edited">bearbeitet</span>
+  </div>
+  <img [src]="sentFile" *ngIf="sentImageExists()" />
+
+  <span class="pdf-img-span" *ngIf="sentPdfExists()">
+    <img src="./img/pdf-img.png" />
+    <p>{{sendMessage.fileName}}</p>
+  </span>
+</main>
+<p *ngIf="sendMessage.deleted" class="message-deleted-notification">
+  Diese Nachricht wurde gelöscht
+</p>

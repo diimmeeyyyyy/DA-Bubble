@@ -1,0 +1,245 @@
+main {
+  /* min-height: 150px; */
+  /*  margin-top: 32px; */
+  display: flex;
+  flex-direction: column;
+}
+
+p,
+h4,
+h5 {
+  margin: 0;
+}
+
+.message-day {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  >p {
+    background: rgba(173, 176, 217, 1);
+    height: 1px;
+    width: 90%;
+  }
+
+  >h4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(253, 251, 255);
+    border-radius: 30px;
+    padding: 5px 15px;
+    border: 1px solid rgba(173, 176, 217, 1);
+    font-size: clamp(.75rem, .3971vw + .6838rem, 1.125rem);
+    text-align: center;
+  }
+}
+
+.message {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-inline: 50px;
+  padding-block: 10px;
+  gap: 20px;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 16px;
+
+  >img {
+    height: 50px;
+    min-width: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &:hover .slide-in {
+    animation: slideIn 0.1s forwards;
+    top: -12px;
+    left: 10%;
+  }
+
+  &:hover {
+    background-color: rgba(236, 238, 254, 1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  position: absolute;
+  left: -100%;
+  top: -12px;
+}
+
+.message-information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+
+  >.sender-and-time {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    align-items: center;
+
+    >h5 {
+      font-size: 18px;
+    }
+
+    >p {
+      font-size: 14px;
+      color: rgba(104, 104, 104, 1);
+      text-wrap: nowrap;
+    }
+  }
+}
+
+
+.in-edit-mode-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding-inline: 50px;
+  padding-block: 16px;
+
+  >div {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(173, 176, 217, 1);
+  }
+
+  >div textarea {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    color: rgba(104, 104, 104, 1);
+    font-size: 18px;
+    line-height: 24px;
+    resize: none;
+  }
+
+  >div span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 32px;
+
+    >button {
+      cursor: pointer;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+    }
+  }
+
+  >img {
+    width: 50px;
+    border-radius: 50%;
+  }
+}
+
+.save-message-btn {
+  background: rgba(68, 77, 242, 1);
+  color: white;
+}
+
+.cancel-btn {
+  border: 1px solid rgba(121, 126, 243, 1) !important;
+  color: rgba(121, 126, 243, 1);
+  background: white;
+}
+
+.adjust-padding-right {
+  padding-inline: 50px clamp(5.5rem, 4.5164rem + 5.2459vw, 7.5rem) !important;
+  margin-top: unset !important;
+}
+
+.position-component {
+  top: 0px !important;
+}
+
+.style-thread-answers {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  div {
+    gap: 4px
+  }
+}
+
+.purple {
+  color: #535AF1;
+}
+
+.grey {
+  color: #686868;
+}
+
+@media (max-width: 1250px) {
+  .sender-and-time {
+    width: max-content;
+  }
+
+  .message {
+    padding: 10px clamp(1rem, -0.0451rem + 5.5738vw, 3.125rem);
+  }
+
+  .text-sm {
+    font-size: clamp(0.75rem, 0.652rem + 0.3922vw, 0.875rem) !important;
+    text-wrap: nowrap;
+  }
+
+  .text-lg {
+    font-size: clamp(1rem, 0.902rem + 0.3922vw, 1.125rem) !important;
+  }
+
+  .style-thread-answers {
+    gap: clamp(0.75rem, 0.3578rem + 1.5686vw, 1.25rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .message {
+    gap: 10px;
+
+    >img {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+    }
+  }
+
+  .adjust-padding-right {
+    margin-right: -20px !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .sender-and-time {
+    flex-direction: column;
+    align-items: start !important;
+    gap: 2px !important;
+  }
+
+  .style-thread-answers {
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+  }
+}
